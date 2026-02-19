@@ -22,6 +22,7 @@ public class Minesweeper {
 		boolean[][] isMine=new boolean[SIZE][SIZE];
 		generateGameboard(isMine);
 		printColumnHeader();
+		printLine();
 //		File f= new File("input/"+"Beginner2.csv");
 //    	Scanner input= new Scanner(f);
 //    	loadGameboard(input,isMine);
@@ -72,7 +73,11 @@ public class Minesweeper {
 	}
 	
 	public static void printLine() {
-		
+		System.out.print("  |");
+		for(int i=1;i<=SIZE;i++) {
+			System.out.print("---|");
+		}
+		System.out.println();
 	}
 	
 	public static void displayGameboard(boolean[][] isOpen, boolean[][] isMine, 
