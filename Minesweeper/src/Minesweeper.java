@@ -29,7 +29,16 @@ public class Minesweeper {
     	for(boolean[] mine:isMine) {
     		System.out.println(Arrays.toString(mine));
     	}
+    	System.out.println(adjacentMines(0,0,isMine));
+    	System.out.println(adjacentMines(7,0,isMine));
+    	System.out.println(adjacentMines(4,4,isMine));
     	System.out.println(adjacentMines(4,6,isMine));
+    	System.out.println(adjacentMines(0,7,isMine));
+    	System.out.println(adjacentMines(7,7,isMine));
+    	System.out.println(adjacentMines(0,3,isMine));
+    	System.out.println(adjacentMines(3,7,isMine));
+    	System.out.println(adjacentMines(5,0,isMine));
+    	
     	
     }
 	
@@ -93,30 +102,50 @@ public class Minesweeper {
 	
 	public static int adjacentMines(int r, int c, boolean[][] isMine) {
 		int count=0;
-		if(isMine[r-1][c-1]) {
-			count++;
+		if (r>0) {
+			if(c>0) {
+				if(isMine[r-1][c-1]) {
+					count++;
+				}
+			}
+			
+			if(isMine[r-1][c]) {
+				count++;
+			}
+			if(c<SIZE-1) {
+				if(isMine[r-1][c+1]) {
+					count++;
+				}
+			}
+			
 		}
-		if(isMine[r-1][c]) {
-			count++;
+		if (c>0) {
+			if(isMine[r][c-1]) {
+				count++;
+			}
+			if(r<SIZE-1) {
+			if(isMine[r+1][c-1]) {
+				count++;
+			}
+			}
 		}
-		if(isMine[r-1][c+1]) {
-			count++;
+		if (c<SIZE-1) {
+			if(isMine[r][c+1]) {
+				count++;
+			}
 		}
-		if(isMine[r][c-1]) {
-			count++;
+		
+		if(r<SIZE-1) {
+			if(isMine[r+1][c]) {
+				count++;
+			}
+		}	
+		if(r<SIZE-1 && c<SIZE-1) {
+			if(isMine[r+1][c+1]) {
+				count++;
+			}
 		}
-		if(isMine[r][c+1]) {
-			count++;
-		}
-		if(isMine[r+1][c-1]) {
-			count++;
-		}
-		if(isMine[r+1][c]) {
-			count++;
-		}
-		if(isMine[r+1][c+1]) {
-			count++;
-		}
+		
 		
 		
 		return count;
