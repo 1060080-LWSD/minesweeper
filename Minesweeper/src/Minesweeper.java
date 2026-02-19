@@ -20,9 +20,10 @@ public class Minesweeper {
 		
 	public static void main(String[] args) throws FileNotFoundException {
 		boolean[][] isMine=new boolean[SIZE][SIZE];
-		File f= new File("input/"+"Beginner2.csv");
-    	Scanner input= new Scanner(f);
-    	loadGameboard(input,isMine);
+		generateGameboard(isMine);
+//		File f= new File("input/"+"Beginner2.csv");
+//    	Scanner input= new Scanner(f);
+//    	loadGameboard(input,isMine);
     	for(boolean[] mine:isMine) {
     		System.out.println(Arrays.toString(mine));
     	}
@@ -50,7 +51,11 @@ public class Minesweeper {
 	}
 	
 	public static void generateGameboard(boolean[][] isMine) {
-		
+		for(int i=0;i<MINES;i++) {
+			int randomRow=(int)(Math.random()*SIZE);
+			int randomCol= (int)(Math.random()*SIZE);
+			isMine[randomRow][randomCol]=true;
+		}
 	}
 	
 	public static void printColumnHeader() {
