@@ -20,25 +20,16 @@ public class Minesweeper {
 		
 	public static void main(String[] args) throws FileNotFoundException {
 		boolean[][] isMine=new boolean[SIZE][SIZE];
-		generateGameboard(isMine);
-		printColumnHeader();
-		printLine();
+		boolean[][] isOpen= new boolean[SIZE][SIZE];
+		boolean[][] isFlagged= new boolean[SIZE][SIZE];
+		
 		File f= new File("input/"+"Beginner1.csv");
     	Scanner input= new Scanner(f);
     	loadGameboard(input,isMine);
     	for(boolean[] mine:isMine) {
     		System.out.println(Arrays.toString(mine));
     	}
-    	System.out.println(adjacentMines(0,0,isMine));
-    	System.out.println(adjacentMines(7,0,isMine));
-    	System.out.println(adjacentMines(4,4,isMine));
-    	System.out.println(adjacentMines(4,6,isMine));
-    	System.out.println(adjacentMines(0,7,isMine));
-    	System.out.println(adjacentMines(7,7,isMine));
-    	System.out.println(adjacentMines(0,3,isMine));
-    	System.out.println(adjacentMines(3,7,isMine));
-    	System.out.println(adjacentMines(5,0,isMine));
-    	System.out.println(adjacentMines(7,3,isMine));
+    	displayGameboard(isOpen,isMine,isFlagged);
     	
     	
     }
@@ -94,6 +85,15 @@ public class Minesweeper {
 	
 	public static void displayGameboard(boolean[][] isOpen, boolean[][] isMine, 
 			boolean[][] isFlagged) {
+		printColumnHeader();
+		printLine();
+		
+		for(int i=1;i<SIZE;i++) {
+			System.out.print(" "+i+"|");
+			
+			printLine();
+			System.out.println();
+		}
 		
 	}
 	
