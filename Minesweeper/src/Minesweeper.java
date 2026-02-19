@@ -23,12 +23,14 @@ public class Minesweeper {
 		generateGameboard(isMine);
 		printColumnHeader();
 		printLine();
-//		File f= new File("input/"+"Beginner2.csv");
-//    	Scanner input= new Scanner(f);
-//    	loadGameboard(input,isMine);
+		File f= new File("input/"+"Beginner1.csv");
+    	Scanner input= new Scanner(f);
+    	loadGameboard(input,isMine);
     	for(boolean[] mine:isMine) {
     		System.out.println(Arrays.toString(mine));
     	}
+    	System.out.println(adjacentMines(4,6,isMine));
+    	
     }
 	
 	/**
@@ -90,7 +92,34 @@ public class Minesweeper {
 	}
 	
 	public static int adjacentMines(int r, int c, boolean[][] isMine) {
-		return -1;
+		int count=0;
+		if(isMine[r-1][c-1]) {
+			count++;
+		}
+		if(isMine[r-1][c]) {
+			count++;
+		}
+		if(isMine[r-1][c+1]) {
+			count++;
+		}
+		if(isMine[r][c-1]) {
+			count++;
+		}
+		if(isMine[r][c+1]) {
+			count++;
+		}
+		if(isMine[r+1][c-1]) {
+			count++;
+		}
+		if(isMine[r+1][c]) {
+			count++;
+		}
+		if(isMine[r+1][c+1]) {
+			count++;
+		}
+		
+		
+		return count;
 	}
 	
 	public static void openAdjacentCells(int r, int c, boolean[][] isOpen) {
