@@ -52,10 +52,14 @@ public class Minesweeper {
 	}
 	
 	public static void generateGameboard(boolean[][] isMine) {
-		for(int i=0;i<MINES;i++) {
+		int counter=0;
+		while(counter<MINES) {
 			int randomRow=(int)(Math.random()*SIZE);
 			int randomCol= (int)(Math.random()*SIZE);
-			isMine[randomRow][randomCol]=true;
+			if(isMine[randomRow][randomCol]==false) {
+				counter++;
+				isMine[randomRow][randomCol]=true;
+			}
 		}
 	}
 	
