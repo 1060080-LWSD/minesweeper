@@ -64,7 +64,7 @@ public class Minesweeper {
 	}
 	
 	public static void printColumnHeader() {
-		System.out.print("|");
+		System.out.print(" |");
 		for(int i=1;i<=SIZE;i++) {
 			System.out.print(" "+i+" |");
 		}
