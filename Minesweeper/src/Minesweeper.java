@@ -19,11 +19,34 @@ public class Minesweeper {
 	public static final String LEVEL = "Beginner";
 		
 	public static void main(String[] args) throws FileNotFoundException {
-		
+		boolean[][] isMine=new boolean[SIZE][SIZE];
+		File f= new File("input/"+"Beginner2.csv");
+    	Scanner input= new Scanner(f);
+    	loadGameboard(input,isMine);
+    	for(boolean[] mine:isMine) {
+    		System.out.println(Arrays.toString(mine));
+    	}
     }
 	
+	/**
+	 * This method loadGameboard reads the input and initializes the isMine array with the mine locations
+	 * @param input is a Scanner value that reads from a .csv file that has SIZE lines of SIZE numbers separated by commas
+	 * @param isMine is a 2D boolean array which will already be initialized to have SIZE rows and SIZE columns using the provided class constant
+	 */
 	public static void loadGameboard(Scanner input, boolean[][] isMine) {
-		
+		int line=0;
+		while(input.hasNextLine()) {
+			String[]nums=input.nextLine().split(",");
+			for(int i=0;i<SIZE;i++) {
+				if(Integer.parseInt(nums[i])==1) {
+					isMine[line][i]=true;
+				}
+				else {
+					isMine[line][i]=false;
+				}
+			}
+			line++;
+		}
 	}
 	
 	public static void generateGameboard(boolean[][] isMine) {
