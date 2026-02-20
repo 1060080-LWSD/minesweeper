@@ -102,10 +102,10 @@ public class Minesweeper {
 	
 	public static void displayMinesLeft(int numMinesLeft) {
 		if(numMinesLeft==1) {
-			System.out.println("There is 1 mine left to flag");
+			System.out.println("There is 1 mine left to flag.");
 		}
 		else if(numMinesLeft>MINES) {
-			System.out.println("You have too many mines flagged");
+			System.out.println("You have too many mines flagged.");
 		}
 		else {
 			System.out.println("There are "+numMinesLeft+" mines left to flag.");
