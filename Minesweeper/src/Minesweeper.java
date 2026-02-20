@@ -30,6 +30,9 @@ public class Minesweeper {
     		System.out.println(Arrays.toString(mine));
     	}
     	displayGameboard(isOpen,isMine,isFlagged);
+    	displayMinesLeft(5);
+    	displayMinesLeft(1);
+    	displayMinesLeft(20);
     	
     	
     }
@@ -98,7 +101,15 @@ public class Minesweeper {
 	}
 	
 	public static void displayMinesLeft(int numMinesLeft) {
-		
+		if(numMinesLeft==1) {
+			System.out.println("There is 1 mine left to flag");
+		}
+		else if(numMinesLeft>MINES) {
+			System.out.println("You have too many mines flagged");
+		}
+		else {
+			System.out.println("There are "+numMinesLeft+" mines left to flag.");
+		}
 	}
 	
 	public static boolean checkValidMine(int r, int c, boolean[][] isMine) {
