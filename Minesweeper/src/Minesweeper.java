@@ -29,20 +29,12 @@ public class Minesweeper {
 //    	for(boolean[] mine:isMine) {
 //    		System.out.println(Arrays.toString(mine));
 //    	}
-    	isOpen[0][4]=true;
-    	isOpen[2][1]=true;
-    	isOpen[4][6]=true;
-    	isOpen[5][3]=true;
-    	isOpen[7][1]=true;
-    	isFlagged[1][0]=true;
-    	isFlagged[1][7]=true;
-    	isFlagged[3][3]=true;
-    	isFlagged[4][5]=true;
-    	isFlagged[7][4]=true;
+    	openAdjacentCells(2,4,isOpen);
     	displayGameboard(isOpen,isMine,isFlagged);
 //    	displayMinesLeft(5);
 //    	displayMinesLeft(1);
 //    	displayMinesLeft(20);
+    	
     	
     	
     }
@@ -178,8 +170,25 @@ public class Minesweeper {
 		return count;
 	}
 	
+	public static void changeisOpen(int r, int c, boolean[][]isOpen) {
+		if (r<0 || r==SIZE) {
+			return;
+		}
+		if (c<0 || c==SIZE) {
+			return;
+		}
+		isOpen[r][c]=true;
+	}
+	
 	public static void openAdjacentCells(int r, int c, boolean[][] isOpen) {
-		
+		changeisOpen(r-1,c-1,isOpen);
+		changeisOpen(r-1,c,isOpen);
+		changeisOpen(r-1,c+1,isOpen);
+		changeisOpen(r,c-1,isOpen);
+		changeisOpen(r,c+1,isOpen);
+		changeisOpen(r+1,c-1,isOpen);
+		changeisOpen(r+1,c,isOpen);
+		changeisOpen(r+1,c+1,isOpen);
 	}
 	
 	public static boolean gameWon(boolean[][] isOpen, boolean[][] isFlagged) {
