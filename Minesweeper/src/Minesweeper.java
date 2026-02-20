@@ -26,13 +26,23 @@ public class Minesweeper {
 		File f= new File("input/"+"Beginner1.csv");
     	Scanner input= new Scanner(f);
     	loadGameboard(input,isMine);
-    	for(boolean[] mine:isMine) {
-    		System.out.println(Arrays.toString(mine));
-    	}
+//    	for(boolean[] mine:isMine) {
+//    		System.out.println(Arrays.toString(mine));
+//    	}
+    	isOpen[0][4]=true;
+    	isOpen[2][1]=true;
+    	isOpen[4][6]=true;
+    	isOpen[5][3]=true;
+    	isOpen[7][1]=true;
+    	isFlagged[1][0]=true;
+    	isFlagged[1][7]=true;
+    	isFlagged[3][3]=true;
+    	isFlagged[4][5]=true;
+    	isFlagged[7][4]=true;
     	displayGameboard(isOpen,isMine,isFlagged);
-    	displayMinesLeft(5);
-    	displayMinesLeft(1);
-    	displayMinesLeft(20);
+//    	displayMinesLeft(5);
+//    	displayMinesLeft(1);
+//    	displayMinesLeft(20);
     	
     	
     }
@@ -88,15 +98,28 @@ public class Minesweeper {
 	
 	public static void displayGameboard(boolean[][] isOpen, boolean[][] isMine, 
 			boolean[][] isFlagged) {
+		
 		printColumnHeader();
 		printLine();
 		
-		for(int i=1;i<SIZE;i++) {
-			System.out.print(" "+i+"|");
-			
-			printLine();
+		for(int r=0;r<SIZE;r++) {
+			System.out.print(" "+(r+1)+"|");
+			for(int c=0;c<SIZE;c++){
+				if(isOpen[r][c]) {
+					System.out.print(" "+adjacentMines(r,c,isMine)+" |");
+				}
+				else if(isFlagged[r][c]) {
+					System.out.print(" * |");
+				}
+				else {
+					System.out.print("   |");
+				}	
+				
+			}
 			System.out.println();
+			printLine();
 		}
+	
 		
 	}
 	
