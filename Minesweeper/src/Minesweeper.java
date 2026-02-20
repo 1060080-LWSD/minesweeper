@@ -104,6 +104,9 @@ public class Minesweeper {
 		if(numMinesLeft==1) {
 			System.out.println("There is 1 mine left to flag.");
 		}
+		else if(numMinesLeft==-1) {
+			System.out.println("You have too many mines flagged.");
+		}
 		else if(numMinesLeft>MINES) {
 			System.out.println("You have too many mines flagged.");
 		}
