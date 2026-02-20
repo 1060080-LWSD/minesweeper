@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
@@ -30,7 +31,24 @@ public class Minesweeper {
 //    		System.out.println(Arrays.toString(mine));
 //    	}
     	openAdjacentCells(2,4,isOpen);
+    	openAdjacentCells(2,1,isOpen);
+    	for(int c=0;c<SIZE;c++) {
+    		isFlagged[0][c]=true;
+    		isFlagged[7][c]=true;
+    		isFlagged[6][c]=true;
+    		isFlagged[5][c]=true;
+    		isFlagged[4][c]=true;
+    	}
+    	isFlagged[1][6]=true;
+    	isFlagged[1][7]=true;
+    	isFlagged[2][6]=true;
+    	isFlagged[2][7]=true;
+    	isFlagged[3][6]=true;
+    	isFlagged[3][7]=true;
+    	isFlagged[2][1]=true;
+    	isFlagged[2][4]=true;
     	displayGameboard(isOpen,isMine,isFlagged);
+    	System.out.println(gameWon(isOpen,isFlagged));
 //    	displayMinesLeft(5);
 //    	displayMinesLeft(1);
 //    	displayMinesLeft(20);
@@ -192,7 +210,14 @@ public class Minesweeper {
 	}
 	
 	public static boolean gameWon(boolean[][] isOpen, boolean[][] isFlagged) {
-		return false;
+		for(int r=0;r<SIZE;r++) {
+			for(int c=0;c<SIZE;c++) {
+				if(!isOpen[r][c] && !isFlagged[r][c]) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public static void playGame(Scanner input, boolean[][] isMine) {
