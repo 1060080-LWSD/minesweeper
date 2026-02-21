@@ -24,7 +24,7 @@ public class Minesweeper {
 		System.out.println();
 		System.out.println("To win you must flag all the bombs and open all other cells.");
 		System.out.println("An open cell will display the number of adjacent bombs to that cell.");
-		System.out.println("A flagged cell will display an astrtisk.");
+		System.out.println("A flagged cell will display an asterisk.");
 		System.out.println();
 		
 		
