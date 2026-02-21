@@ -236,6 +236,9 @@ public class Minesweeper {
 						isFlagged[row][col]=true;
 						numMinesLeft--;
 					}
+					else {
+						System.out.println("Invalid choice, try again.");
+					}
 				}
 				else {
 					// if the user chooses O and the chosen (row,col) is a mine then print "BOOM!."
