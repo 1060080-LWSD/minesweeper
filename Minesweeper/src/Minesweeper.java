@@ -20,23 +20,25 @@ public class Minesweeper {
 	public static final String LEVEL = "Beginner";
 		
 	public static void main(String[] args) throws FileNotFoundException {
-//		boolean[][] isMine=new boolean[SIZE][SIZE];
-//		boolean[][] isOpen= new boolean[SIZE][SIZE];
-//		boolean[][] isFlagged= new boolean[SIZE][SIZE];
+		System.out.println("Welcome to Minesweeper!");
+		System.out.println();
+		System.out.println("To win you muct flag all the bombs and open all other cells");
+		System.out.println("An open cell will display the number of adjacent bombs to that cell.");
+		System.out.println("A flagged cell will display an astrtisk.");
 		
-//		File f= new File("input/"+"Beginner1.csv");
-//    	Scanner input= new Scanner(f);
-//    	loadGameboard(input,isMine);
-//    	for(boolean[] mine:isMine) {
-//    		System.out.println(Arrays.toString(mine));
-//    	}
-//    	Scanner console= new Scanner(System.in);
-//    	playGame(console,isMine);
-    	boolean[][] isMine= createGameboard();
-
-    	for(boolean[] mine:isMine) {
-    		System.out.println(Arrays.toString(mine));
-    	}
+		
+		boolean[][] isMine=new boolean[SIZE][SIZE];
+		boolean[][] isOpen= new boolean[SIZE][SIZE];
+		boolean[][] isFlagged= new boolean[SIZE][SIZE];
+		
+		File f= new File("input/"+"Beginner1.csv");
+    	Scanner input= new Scanner(f);
+    	loadGameboard(input,isMine);
+    	
+    	Scanner console= new Scanner(System.in);
+    	playGame(console,isMine);
+    	
+    	
     	
     }
 	
@@ -245,7 +247,7 @@ public class Minesweeper {
 					}
 				}
 				else {
-					// if the user chooses O and the chosen (row,col) is a mine then print "BOOM!."
+                    // if the user chooses O and the chosen (row,col) is a mine then print "BOOM!."
 					if(isMine[row][col]) {
 						System.out.println("BOOM! You lose!");
 						return;
