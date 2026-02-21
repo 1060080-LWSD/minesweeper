@@ -30,29 +30,8 @@ public class Minesweeper {
 //    	for(boolean[] mine:isMine) {
 //    		System.out.println(Arrays.toString(mine));
 //    	}
-    	openAdjacentCells(2,4,isOpen);
-    	openAdjacentCells(2,1,isOpen);
-    	for(int c=0;c<SIZE;c++) {
-    		isFlagged[0][c]=true;
-    		isFlagged[7][c]=true;
-    		isFlagged[6][c]=true;
-    		isFlagged[5][c]=true;
-    		isFlagged[4][c]=true;
-    	}
-    	isFlagged[1][6]=true;
-    	isFlagged[1][7]=true;
-    	isFlagged[2][6]=true;
-    	isFlagged[2][7]=true;
-    	isFlagged[3][6]=true;
-    	isFlagged[3][7]=true;
-    	isFlagged[2][1]=true;
-    	isFlagged[2][4]=true;
-    	displayGameboard(isOpen,isMine,isFlagged);
-    	System.out.println(gameWon(isOpen,isFlagged));
-//    	displayMinesLeft(5);
-//    	displayMinesLeft(1);
-//    	displayMinesLeft(20);
-    	
+    	Scanner console= new Scanner(System.in);
+    	playGame(console,isMine);
     	
     	
     }
@@ -221,7 +200,70 @@ public class Minesweeper {
 	}
 	
 	public static void playGame(Scanner input, boolean[][] isMine) {
-		
+		boolean[][] isOpen= new boolean[SIZE][SIZE];
+		boolean[][] isFlagged= new boolean[SIZE][SIZE]; 
+		int numMinesLeft=MINES;
+		while(true) {
+			displayGameboard(isOpen, isMine, isFlagged);
+			displayMinesLeft(numMinesLeft);
+			System.out.print("(O)pen, (F)lag, or (Q)uit? ");
+			String userLetter= input.nextLine();
+			if(!userLetter.equals("O") && !userLetter.equals("F") && !userLetter.equals("Q")) {
+				System.out.println("...."+userLetter+" Invaild choice, try again.");
+			}
+			if(userLetter.equals("O") || userLetter.equals("F")) {
+				int row =0;
+				while(row<1 || row>SIZE) {
+					System.out.printf("Enter the row number (1-%d): ",SIZE);
+					row = input.nextInt();
+				}
+				
+				int col =0;
+				while(col<1 || col>SIZE) {
+					System.out.printf("Enter the column number (1-%d): ",SIZE);
+					col = input.nextInt();
+				}
+				row--;
+				col--;
+				
+				if(userLetter.equals("F")) {
+					// If the user chooses F and the chosen (row,col) is not already flagged and is
+					//not open set (row,col) to be flagged and decrease the number of mines left
+					if(!isFlagged[row][col] && !isOpen[row][col]){
+						isFlagged[row][col]=true;
+						numMinesLeft--;
+					}
+				}
+				else {
+					// if the user chooses O and the chosen (row,col) is a mine then print "BOOM!."
+					if(isMine[row][col]) {
+						System.out.println("BOOM! You lose!");
+						return;
+					}
+					if(!isOpen[row][col]) {
+						isOpen[row][col]=true;
+						if(isFlagged[row][col]) {
+							numMinesLeft++;
+							isFlagged[row][col]=false;
+						}
+						if(adjacentMines(row,col,isMine)==0) {
+							openAdjacentCells(row,col,isOpen);
+						}
+					}
+					else {
+						System.out.println(" Invalid choice, try again.");
+					}
+				}
+			}
+			else if(userLetter.equals("Q")){
+				return;			
+			}
+			if(numMinesLeft==0 && gameWon(isOpen, isFlagged)) {
+				System.out.println("You Win!");
+				return;
+			}
+			
+		}
 	}
 	
 	public static boolean[][] createGameboard() throws FileNotFoundException {
