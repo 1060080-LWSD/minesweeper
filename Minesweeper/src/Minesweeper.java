@@ -26,21 +26,12 @@ public class Minesweeper {
 		System.out.println("An open cell will display the number of adjacent bombs to that cell.");
 		System.out.println("A flagged cell will display an asterisk.");
 		System.out.println();
-		
-		
-		boolean[][] isMine=new boolean[SIZE][SIZE];
-		boolean[][] isOpen= new boolean[SIZE][SIZE];
-		boolean[][] isFlagged= new boolean[SIZE][SIZE];
-		
-		File f= new File("input/"+"Beginner1.csv");
-    	Scanner input= new Scanner(f);
-    	loadGameboard(input,isMine);
-    	
+
+    	boolean[][] isMine= createGameboard();
     	Scanner console= new Scanner(System.in);
     	playGame(console,isMine);
     	
-    	
-    	
+    	System.out.println("Thanks for playing!");
     }
 	
 	/**
