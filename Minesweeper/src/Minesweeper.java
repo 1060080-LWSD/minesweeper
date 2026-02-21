@@ -31,7 +31,7 @@ public class Minesweeper {
     	System.out.println();
     	Scanner console= new Scanner(System.in);
     	playGame(console,isMine);
-    	
+    	System.out.println();
     	System.out.println("Thanks for playing!");
     }
 	
