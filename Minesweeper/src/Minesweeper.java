@@ -207,7 +207,7 @@ public class Minesweeper {
 			displayGameboard(isOpen, isMine, isFlagged);
 			displayMinesLeft(numMinesLeft);
 			System.out.print("(O)pen, (F)lag, or (Q)uit? ");
-			String userLetter= input.nextLine();
+			String userLetter= input.next();
 			if(!userLetter.equals("O") && !userLetter.equals("F") && !userLetter.equals("Q")) {
 				System.out.println("Invaild choice, try again.");
 			}
