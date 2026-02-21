@@ -28,6 +28,7 @@ public class Minesweeper {
 		System.out.println();
 
     	boolean[][] isMine= createGameboard();
+    	System.out.println();
     	Scanner console= new Scanner(System.in);
     	playGame(console,isMine);
     	
