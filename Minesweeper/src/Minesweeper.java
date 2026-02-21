@@ -194,6 +194,9 @@ public class Minesweeper {
 				if(!isOpen[r][c] && !isFlagged[r][c]) {
 					return false;
 				}
+				if(isOpen[r][c] && isFlagged[r][c]) {
+					return false;
+				}
 			}
 		}
 		return true;
