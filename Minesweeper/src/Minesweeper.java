@@ -20,19 +20,23 @@ public class Minesweeper {
 	public static final String LEVEL = "Beginner";
 		
 	public static void main(String[] args) throws FileNotFoundException {
-		boolean[][] isMine=new boolean[SIZE][SIZE];
-		boolean[][] isOpen= new boolean[SIZE][SIZE];
-		boolean[][] isFlagged= new boolean[SIZE][SIZE];
+//		boolean[][] isMine=new boolean[SIZE][SIZE];
+//		boolean[][] isOpen= new boolean[SIZE][SIZE];
+//		boolean[][] isFlagged= new boolean[SIZE][SIZE];
 		
-		File f= new File("input/"+"Beginner1.csv");
-    	Scanner input= new Scanner(f);
-    	loadGameboard(input,isMine);
+//		File f= new File("input/"+"Beginner1.csv");
+//    	Scanner input= new Scanner(f);
+//    	loadGameboard(input,isMine);
 //    	for(boolean[] mine:isMine) {
 //    		System.out.println(Arrays.toString(mine));
 //    	}
-    	Scanner console= new Scanner(System.in);
-    	playGame(console,isMine);
-    	
+//    	Scanner console= new Scanner(System.in);
+//    	playGame(console,isMine);
+    	boolean[][] isMine= createGameboard();
+
+    	for(boolean[] mine:isMine) {
+    		System.out.println(Arrays.toString(mine));
+    	}
     	
     }
 	
@@ -273,6 +277,21 @@ public class Minesweeper {
 	}
 	
 	public static boolean[][] createGameboard() throws FileNotFoundException {
-		return null;
+		int rando=(int)(Math.random()*2);
+		boolean[][] isMine=new boolean[SIZE][SIZE];
+		if(rando==0) {
+			System.out.println("Loading the gameboard from a file...");
+			int num= (int)(Math.random()*10+1);
+			File f= new File("input/"+LEVEL+num+".csv");
+	    	Scanner input= new Scanner(f);
+	    	loadGameboard(input,isMine);
+		}
+		else if (rando==1) {
+			System.out.println("Generating a random gameboard...");
+			generateGameboard(isMine);
+			
+		}
+		
+		return isMine;
     }
 }
