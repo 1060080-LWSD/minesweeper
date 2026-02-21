@@ -209,7 +209,7 @@ public class Minesweeper {
 			System.out.print("(O)pen, (F)lag, or (Q)uit? ");
 			String userLetter= input.next();
 			if(!userLetter.equals("O") && !userLetter.equals("F") && !userLetter.equals("Q")) {
-				System.out.println("Invaild choice, try again.");
+				System.out.println("Invalid choice, try again.");
 			}
 			if(userLetter.equals("O") || userLetter.equals("F")) {
 				int row =0;
