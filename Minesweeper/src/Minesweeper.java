@@ -209,18 +209,18 @@ public class Minesweeper {
 			System.out.print("(O)pen, (F)lag, or (Q)uit? ");
 			String userLetter= input.nextLine();
 			if(!userLetter.equals("O") && !userLetter.equals("F") && !userLetter.equals("Q")) {
-				System.out.println("...."+userLetter+" Invaild choice, try again.");
+				System.out.println("Invaild choice, try again.");
 			}
 			if(userLetter.equals("O") || userLetter.equals("F")) {
 				int row =0;
 				while(row<1 || row>SIZE) {
-					System.out.printf("Enter the row number (1-%d): ",SIZE);
+					System.out.printf("Enter the row number (1 - %d): ",SIZE);
 					row = input.nextInt();
 				}
 				
 				int col =0;
 				while(col<1 || col>SIZE) {
-					System.out.printf("Enter the column number (1-%d): ",SIZE);
+					System.out.printf("Enter the column number (1 - %d): ",SIZE);
 					col = input.nextInt();
 				}
 				row--;
