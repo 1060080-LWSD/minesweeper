@@ -251,7 +251,7 @@ public class Minesweeper {
 						}
 					}
 					else {
-						System.out.println(" Invalid choice, try again.");
+						System.out.println("Invalid choice, try again.");
 					}
 				}
 			}
