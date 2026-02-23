@@ -7,11 +7,11 @@ import java.io.File;
 /**
  * Minesweeper.java
  * 
- * Name:
- * Last Revised Date:
- * APCS Period:
+ * Name: Aarushi Dhamija
+ * Last Revised Date:2-22-2026
+ * APCS Period:4th
  * 
- * Program Description:
+ * Program Description: Mindsweeper game
  * 
  */
 public class Minesweeper {
@@ -19,6 +19,11 @@ public class Minesweeper {
 	public static final int SIZE = 8;
 	public static final String LEVEL = "Beginner";
 		
+	/**
+	 * Main method were we are printing the instructions and playing the game
+	 * @param args
+	 * @throws FileNotFoundException
+	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println("Welcome to Minesweeper!");
 		System.out.println();
@@ -36,9 +41,12 @@ public class Minesweeper {
     }
 	
 	/**
-	 * This method loadGameboard reads the input and initializes the isMine array with the mine locations
-	 * @param input is a Scanner value that reads from a .csv file that has SIZE lines of SIZE numbers separated by commas
-	 * @param isMine is a 2D boolean array which will already be initialized to have SIZE rows and SIZE columns using the provided class constant
+	 * This method loadGameboard reads the input from the scanner and initializes 
+	 * the isMine array with the mine locations
+	 * @param input is a Scanner value that reads from a .csv file that has SIZE 
+	 * lines of SIZE numbers separated by commas
+	 * @param isMine is a 2D boolean array which will already be initialized to
+	 *  have SIZE rows and SIZE columns using the provided class constant
 	 */
 	public static void loadGameboard(Scanner input, boolean[][] isMine) {
 		int line=0;
@@ -56,6 +64,10 @@ public class Minesweeper {
 		}
 	}
 	
+	/**
+	 * generateGameboard method adds mines at class constant MINES random locations 
+	 * @param isMine an array of type boolean 2D array representing an empty board
+	 */
 	public static void generateGameboard(boolean[][] isMine) {
 		int counter=0;
 		while(counter<MINES) {
@@ -68,6 +80,9 @@ public class Minesweeper {
 		}
 	}
 	
+	/** 
+	 * Prints the column numbers in a line based on the length of SIZE
+	 */
 	public static void printColumnHeader() {
 		System.out.print("  |");
 		for(int i=1;i<=SIZE;i++) {
@@ -76,6 +91,9 @@ public class Minesweeper {
 		System.out.println();
 	}
 	
+	/**
+	 * prints |---|---|---| and so on based on SIZE
+	 */
 	public static void printLine() {
 		System.out.print("  |");
 		for(int i=1;i<=SIZE;i++) {
@@ -84,6 +102,18 @@ public class Minesweeper {
 		System.out.println();
 	}
 	
+	/**
+	 * This method displays how game board taking into account the open locations and the
+	 * flagged locations
+	 * For the open locations it prints the number of adjacent mines
+	 * For the flagged locations it prints a * 
+	 * Otherwise its just a space
+	 * @param isOpen is an array of type boolean and shows the open locations
+	 * @param isMine is an array of type boolean and returns true if the location is a mine and 
+	 * false if it isn't
+	 * @param isFlagged is an array of type boolean and turns true after when you want to mark
+	 * a flag
+	 */
 	public static void displayGameboard(boolean[][] isOpen, boolean[][] isMine, 
 			boolean[][] isFlagged) {
 		
@@ -110,7 +140,10 @@ public class Minesweeper {
 	
 		
 	}
-	
+	/**
+	 * Prints a message of how many mines are left
+	 * @param numMinesLeft of type int 
+	 */
 	public static void displayMinesLeft(int numMinesLeft) {
 		if(numMinesLeft==1) {
 			System.out.println("There is 1 mine left to flag.");
@@ -125,7 +158,13 @@ public class Minesweeper {
 			System.out.println("There are "+numMinesLeft+" mines left to flag.");
 		}
 	}
-	
+	/** 
+	 * Helper function used in adjacentMines. Checks if r and c are in valid bounds in isMine array 
+	 * @param r of type int and is the row number
+	 * @param c of type int and is the column number
+	 * @param isMine an array of type boolean
+	 * @return the isMine location using r and c 
+	 */
 	public static boolean checkValidMine(int r, int c, boolean[][] isMine) {
 		if (r<0 || r==SIZE) {
 			return false;
@@ -136,6 +175,13 @@ public class Minesweeper {
 		return isMine[r][c];
 	}
 	
+	/**
+	 * This method tells shows how many mines are adjacent to the cell at (r,c)
+	 * @param r is of type int and is the row number
+	 * @param c is of type int and is the column number
+	 * @param isMine an boolean array 
+	 * @return the number of mines that are adjacent to the cell at (r,c)
+	 */
 	public static int adjacentMines(int r, int c, boolean[][] isMine) {
 		int count=0;
 		if (checkValidMine(r-1,c-1,isMine)) {
@@ -165,7 +211,12 @@ public class Minesweeper {
 		
 		return count;
 	}
-	
+	/** 
+	 * Helper function used in openAdjacentCells. Checks if r and c are in valid bounds in isOpen array  
+	 * @param r of type int and is the row number
+	 * @param c of type int and is the column number
+	 * @param isOpen an array of type boolean
+	 */
 	public static void changeisOpen(int r, int c, boolean[][]isOpen) {
 		if (r<0 || r==SIZE) {
 			return;
@@ -175,6 +226,12 @@ public class Minesweeper {
 		}
 		isOpen[r][c]=true;
 	}
+	/**
+	 * Opens the adjacent valid cells of the given location
+	 * @param r of type int and is the row number
+	 * @param c of type int and is the column number
+	 * @param isOpen an array of type boolean and returns true or false if open or not
+	 */
 	
 	public static void openAdjacentCells(int r, int c, boolean[][] isOpen) {
 		changeisOpen(r-1,c-1,isOpen);
@@ -186,7 +243,12 @@ public class Minesweeper {
 		changeisOpen(r+1,c,isOpen);
 		changeisOpen(r+1,c+1,isOpen);
 	}
-	
+	/**
+	 * This method checks if you won the game or not 
+	 * @param isOpen an array of type boolean which is true or false
+	 * @param isFlagged an array of type boolean which is true or false
+	 * @return true if all the cells in the game board are either marked as open or flagged but not both
+	 */
 	public static boolean gameWon(boolean[][] isOpen, boolean[][] isFlagged) {
 		for(int r=0;r<SIZE;r++) {
 			for(int c=0;c<SIZE;c++) {
@@ -200,7 +262,11 @@ public class Minesweeper {
 		}
 		return true;
 	}
-	
+	/**
+	 * This method lets you play the game and asks for inputs from the user
+	 * @param input asks the user questions of type scanner 
+	 * @param isMine an array of type boolean 
+	 */
 	public static void playGame(Scanner input, boolean[][] isMine) {
 		boolean[][] isOpen= new boolean[SIZE][SIZE];
 		boolean[][] isFlagged= new boolean[SIZE][SIZE]; 
@@ -271,6 +337,12 @@ public class Minesweeper {
 		}
 	}
 	
+	/**
+	 * Has a 50% chance of loading a game board from one of the random files available
+	 * for the LEVEL or generating a random game board
+	 * @return boolean [][] isMine
+	 * @throws FileNotFoundException
+	 */
 	public static boolean[][] createGameboard() throws FileNotFoundException {
 		int rando=(int)(Math.random()*2);
 		boolean[][] isMine=new boolean[SIZE][SIZE];
